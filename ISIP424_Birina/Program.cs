@@ -6,10 +6,7 @@ using System.Threading.Tasks;
 
 namespace ISIP424_Birina
 {
-
-    using System;
-
-    struct Expense
+    struct Expense 
     {
         public string Title;
         public double Price;
@@ -25,16 +22,16 @@ namespace ISIP424_Birina
 
             Expense[] expenses = new Expense[n];
 
-            Console.WriteLine("[Название; Цена] (только так пишите, пожалуйста, босс)");
+            Console.WriteLine("[Название; Цена в рублях] (только так пишите, пожалуйста, босс)");
 
             for (int i = 0; i < n; i++)
             {
-                Console.Write($"{i + 1}: ");
+                Console.Write($"{i + 1}: "); //начинаем с 1
                 string[] parts = Console.ReadLine().Split(';');
                 expenses[i] = new Expense
                 {
                     Title = parts[0],
-                    Price = double.Parse(parts[1])
+                    Price = Convert.ToDouble(parts[1])
                 };
             } //чтобы красиво цифры были каждый ввод...
 
@@ -54,17 +51,20 @@ namespace ISIP424_Birina
                     case "1":
                         for (int i = 0; i < n; i++)
                             Console.WriteLine($"{expenses[i].Title} — {expenses[i].Price} руб.");
-                        break;
+                        break; 
 
                     case "2":
                         double sum = 0, min = expenses[0].Price, max = expenses[0].Price;
+
                         foreach (var e in expenses)
                         {
                             sum += e.Price;
+                            
                             if (e.Price < min)
                             { 
                             min = e.Price;
                             }
+
                             if (e.Price > max)
                             {
                                 max = e.Price;
@@ -85,13 +85,13 @@ namespace ISIP424_Birina
                                     var temp = expenses[j];
                                     expenses[j] = expenses[j + 1];
                                     expenses[j + 1] = temp;
-                                }
+                                } //многострадальная сортировка пузырьком...
                         Console.WriteLine("готово, босс");
                         break;
 
                     case "4":
-                        Console.Write("курс какой ");
-                        double rate = double.Parse(Console.ReadLine());
+                        Console.Write("курс: ");
+                        double rate = Convert.ToDouble(Console.ReadLine());
                         Console.WriteLine("конвертация выполнена, босс");
 
                         foreach (var e in expenses)
@@ -99,11 +99,11 @@ namespace ISIP424_Birina
                         break;
 
                     case "5":
-                        Console.Write("строку,босс ");
-                        string query = Console.ReadLine().ToLower();
+                        Console.Write("строку,босс -->");
+                        string query = Console.ReadLine().ToLower(); //в нижнем регистре...
 
                         foreach (var e in expenses)
-                            if (e.Title.ToLower().Contains(query))
+                            if (e.Title.ToLower().Contains(query)) //в нижнем регистре...
                                 Console.WriteLine($"{e.Title} — {e.Price} руб.");
                         break;
 
