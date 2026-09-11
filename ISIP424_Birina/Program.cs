@@ -26,7 +26,7 @@ namespace ISIP424_Birina
 
             for (int i = 0; i < n; i++)
             {
-                Console.Write($"{i + 1}: "); //начинаем с 1
+                Console.Write($"{i + 1}: "); //начинаем с 1...
                 string[] parts = Console.ReadLine().Split(';');
                 expenses[i] = new Expense
                 {
@@ -35,7 +35,7 @@ namespace ISIP424_Birina
                 };
             } //чтобы красиво цифры были каждый ввод...
 
-            while (true)
+            while (true) //бесконечно...
             {
                 Console.WriteLine("\n1 - Вывод боссданных");
                 Console.WriteLine("2 - Статистика для босса");
@@ -50,7 +50,7 @@ namespace ISIP424_Birina
                 {
                     case "1":
                         for (int i = 0; i < n; i++)
-                            Console.WriteLine($"{expenses[i].Title} — {expenses[i].Price} руб.");
+                            Console.WriteLine($"{expenses[i].Title} = {expenses[i].Price} руб.");
                         break; 
 
                     case "2":
