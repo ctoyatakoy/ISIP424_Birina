@@ -20,7 +20,7 @@ namespace ISIP424_Birina
             Console.Write("Введите цену: ");
             string chena = Console.ReadLine();
             int n1;
-            bool vsekruto = Convert.ToInt32(chena, out n1);
+            bool vsekruto = int.TryParse(chena, out n1);
             if (!vsekruto)
             {
                 Console.WriteLine("Ты дурак.");
@@ -30,7 +30,7 @@ namespace ISIP424_Birina
             Console.Write("Введите количество: ");
             int kolvo = Convert.ToInt32(Console.ReadLine());
 
-            Console.Write($"Итог: {chena * kolvo} ");
+            //Console.Write($"Итог: {chena * kolvo} ");
 
             
 
