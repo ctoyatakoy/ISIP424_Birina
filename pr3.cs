@@ -32,10 +32,41 @@ for (int i = 0; i < slova.Length; i++)
     }
 }
 
+int kolichestvoPredlozheniy = 0;
+int glasnye = 0;
+int soglasnye = 0;
+
+string glasnyeBukvy = "аеёиоуыэюяАЕЁИОУЫЭЮЯ";
+
+for (int i = 0; i < tekst.Length; i++)
+{
+    char bukva = tekst[i];
+
+    if (bukva == '.' || bukva == '!' || bukva == '?')
+    {
+        kolichestvoPredlozheniy++;
+    }
+
+    if (Char.IsLetter(bukva))
+    {
+        if (glasnyeBukvy.Contains(bukva))
+        {
+            glasnye++;
+        }
+        else
+        {
+            soglasnye++;
+        }
+    }
+}
+
 Console.WriteLine();
 Console.WriteLine("Количество слов: " + kolichestvoSlov);
 Console.WriteLine("Самое короткое слово: " + korotkoeSlovo);
 Console.WriteLine("Самое длинное слово: " + dlinnoeSlovo);
+Console.WriteLine("Количество предложений: " + kolichestvoPredlozheniy);
+Console.WriteLine("Количество гласных: " + glasnye);
+Console.WriteLine("Количество согласных: " + soglasnye);
 
 
 
