@@ -144,6 +144,44 @@ Console.WriteLine("Количество предложений: " + kolichestvoP
 Console.WriteLine("Количество гласных: " + glasnye);
 Console.WriteLine("Количество согласных: " + soglasnye);
 
+Console.WriteLine();
+Console.WriteLine("Статистика прошлых текстов:");
+
+for (int i = 0; i < spisokStatistik.Count; i++)
+{
+    Console.WriteLine();
+    Console.WriteLine("Текст номер " + (i + 1));
+
+    Console.WriteLine("Количество слов: " +
+        spisokStatistik[i].KolichestvoSlov);
+
+    Console.WriteLine("Самое короткое слово: " +
+        spisokStatistik[i].KorotkoeSlovo);
+
+    Console.WriteLine("Самое длинное слово: " +
+        spisokStatistik[i].DlinnoeSlovo);
+
+    Console.WriteLine("Количество предложений: " +
+        spisokStatistik[i].KolichestvoPredlozheniy);
+
+    Console.WriteLine("Количество гласных: " +
+        spisokStatistik[i].Glasnye);
+
+    Console.WriteLine("Количество согласных: " +
+        spisokStatistik[i].Soglasnye);
+
+    Console.WriteLine("Частота букв:");
+
+    for (int j = 0; j < alfavit.Length; j++)
+    {
+        if (spisokStatistik[i].KolichestvoBukv[j] > 0)
+        {
+            Console.WriteLine(
+                alfavit[j] + " - " +
+                spisokStatistik[i].KolichestvoBukv[j]);
+        }
+    }
+}
 
 
 /*
