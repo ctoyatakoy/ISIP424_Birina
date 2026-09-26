@@ -60,6 +60,36 @@ for (int i = 0; i < tekst.Length; i++)
     }
 }
 
+string alfavit = "абвгдеёжзийклмнопрстуфхцчшщъыьэюя";
+
+int[] kolichestvoBukv = new int[alfavit.Length];
+
+for (int i = 0; i < tekst.Length; i++)
+{
+    char bukva = Char.ToLower(tekst[i]);
+
+    for (int j = 0; j < alfavit.Length; j++)
+    {
+        if (bukva == alfavit[j])
+        {
+            kolichestvoBukv[j]++;
+        }
+    }
+}
+
+Console.WriteLine();
+Console.WriteLine("Частота букв:");
+
+for (int i = 0; i < alfavit.Length; i++)
+{
+    if (kolichestvoBukv[i] > 0)
+    {
+        Console.WriteLine(alfavit[i] + " - " + kolichestvoBukv[i]);
+    }
+}
+
+
+
 Console.WriteLine();
 Console.WriteLine("Количество слов: " + kolichestvoSlov);
 Console.WriteLine("Самое короткое слово: " + korotkoeSlovo);
