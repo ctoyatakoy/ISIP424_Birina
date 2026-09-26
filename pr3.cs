@@ -1,5 +1,17 @@
 ﻿using static System.StringSplitOptions
 
+class Statistika
+{
+    public int KolichestvoSlov;
+    public string KorotkoeSlovo;
+    public string DlinnoeSlovo;
+    public int KolichestvoPredlozheniy;
+    public int Glasnye;
+    public int Soglasnye;
+    public int[] KolichestvoBukv;
+}
+
+List<Statistika> spisokStatistik = new List<Statistika>();
 
 Console.WriteLine("Текст не менее соточки букв, босс:");
 
@@ -88,6 +100,17 @@ for (int i = 0; i < alfavit.Length; i++)
     }
 }
 
+Statistika statistika = new Statistika();
+
+statistika.KolichestvoSlov = kolichestvoSlov;
+statistika.KorotkoeSlovo = korotkoeSlovo;
+statistika.DlinnoeSlovo = dlinnoeSlovo;
+statistika.KolichestvoPredlozheniy = kolichestvoPredlozheniy;
+statistika.Glasnye = glasnye;
+statistika.Soglasnye = soglasnye;
+statistika.KolichestvoBukv = kolichestvoBukv;
+
+spisokStatistik.Add(statistika);
 
 
 Console.WriteLine();
