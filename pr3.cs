@@ -12,15 +12,36 @@ class Statistika
 }
 
 List<Statistika> spisokStatistik = new List<Statistika>();
+bool rabota = true;
 
-Console.WriteLine("Текст не менее соточки букв, босс:");
 
-string tekst = Console.ReadLine();
-
-while (tekst.Length < 100)
+while (rabota)
 {
-    Console.WriteLine("Текст слишком короткий...");
-    tekst = Console.ReadLine();
+    Console.WriteLine("Введите текст. В тексте должно быть не менее 100 символов.");
+
+    string tekst = Console.ReadLine();
+
+    while (tekst.Length < 100)
+    {
+        Console.WriteLine("Текст слишком короткий.");
+        Console.WriteLine("Введите текст еще раз.");
+
+        tekst = Console.ReadLine();
+    }
+
+    //анализ текста
+
+    Console.WriteLine();
+    Console.WriteLine("Хотите проанализировать новый текст?");
+    Console.WriteLine("1 - Да");
+    Console.WriteLine("2 - Нет");
+
+    string otvet = Console.ReadLine();
+
+    if (otvet == "2")
+    {
+        rabota = false;
+    }
 }
 Console.WriteLine("Количество символов: " + tekst.Length);
 
@@ -111,6 +132,8 @@ statistika.Soglasnye = soglasnye;
 statistika.KolichestvoBukv = kolichestvoBukv;
 
 spisokStatistik.Add(statistika);
+
+
 
 
 Console.WriteLine();
