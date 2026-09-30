@@ -42,14 +42,12 @@ namespace test
 
                 char[] razdelyteli = new char[]
                 {
-                    ' ', '\t', '\n', '\r', ',', '.', '!', '?', ';', ':',
-                    '-', '—', '(', ')', '"', '\''
+                    ' ', '.', '!', '?', ';', ':'   
                 };
 
                 string[] slova = tekst.Split(razdelyteli, StringSplitOptions.RemoveEmptyEntries);
 
                 int kolichestvoSlov = slova.Length;
-
 
                 string korotkoeSlovo = slova[0];
                 string dlinnoeSlovo = slova[0];
