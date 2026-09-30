@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 
 class Statistika
 {
@@ -25,17 +26,17 @@ class Program
 
         while (rabota)
         {
-            // ---------- Ввод текста с проверкой длины ----------
-            Console.WriteLine("Введите текст. В тексте должно быть не менее 100 символов.");
+
+            Console.WriteLine("100+ букв, босс");
             string tekst = Console.ReadLine();
 
             while (tekst == null || tekst.Length < 100)
             {
-                Console.WriteLine("Текст слишком короткий. Введите текст еще раз.");
+                Console.WriteLine("Текст коротковат");
                 tekst = Console.ReadLine();
             }
 
-            // ---------- Разбиение на слова ----------
+
             char[] razdelyteli = new char[]
             {
                 ' ', '\t', '\n', '\r', ',', '.', '!', '?', ';', ':',
@@ -46,7 +47,7 @@ class Program
 
             int kolichestvoSlov = slova.Length;
 
-            // ---------- Поиск короткого и длинного слова ----------
+
             string korotkoeSlovo = slova[0];
             string dlinnoeSlovo = slova[0];
 
@@ -63,7 +64,7 @@ class Program
                 }
             }
 
-            // ---------- Подсчёт предложений, гласных и согласных ----------
+   
             int kolichestvoPredlozheniy = 0;
             int glasnye = 0;
             int soglasnye = 0;
@@ -92,7 +93,7 @@ class Program
                 }
             }
 
-            // ---------- Частота букв ----------
+  
             int[] kolichestvoBukv = new int[alfavit.Length];
 
             for (int i = 0; i < tekst.Length; i++)
@@ -108,7 +109,6 @@ class Program
                 }
             }
 
-            // ---------- Сохранение статистики ----------
             Statistika statistika = new Statistika();
 
             statistika.KolichestvoSlov = kolichestvoSlov;
@@ -121,9 +121,9 @@ class Program
 
             spisokStatistik.Add(statistika);
 
-            // ---------- Вывод статистики текущего текста ----------
+
             Console.WriteLine();
-            Console.WriteLine("=== Статистика текущего текста ===");
+            Console.WriteLine("Статистика текущего текста");
             Console.WriteLine("Количество символов: " + tekst.Length);
             Console.WriteLine("Количество слов: " + kolichestvoSlov);
             Console.WriteLine("Самое короткое слово: " + korotkoeSlovo);
@@ -141,7 +141,7 @@ class Program
                 }
             }
 
-            // ---------- Вопрос о продолжении ----------
+  
             Console.WriteLine();
             Console.WriteLine("Хотите проанализировать новый текст?");
             Console.WriteLine("1 - Да");
