@@ -13,11 +13,13 @@ namespace test
         public int Glasnye;
         public int Soglasnye;
         public int[] KolichestvoBukv;
+        public Dictionary<char, int> BykviChertovy = new Dictionary<char, int>();
+        
     }
 
     class Program
     {
-        static void Main()
+        static void Main(string[] Args)
         {
             List<Statistika> spisokStatistik = new List<Statistika>();
 
@@ -139,10 +141,14 @@ namespace test
                 {
                     if (kolichestvoBukv[i] > 0)
                     {
-                        Console.WriteLine(alfavit[i] + " - " + kolichestvoBukv[i]);
+                        statistika.BykviChertovy[alfavit[i]] = kolichestvoBukv[i];
                     }
                 }
 
+                foreach (var ymirat in statistika.BykviChertovy)
+                {
+                    Console.WriteLine($"буква {ymirat.Key} используется {ymirat.Value} раз");
+                }
 
                 Console.WriteLine();
                 Console.WriteLine("Хотите проанализировать новый текст?");
@@ -183,8 +189,8 @@ namespace test
             }
 
             Console.WriteLine();
-            Console.WriteLine("Нажмите любую клавишу для выхода...");
-            Console.ReadKey();
+            Console.WriteLine("Нажмите клавишу для выхода...");
+            Console.ReadLine();
         }
     }
 }
