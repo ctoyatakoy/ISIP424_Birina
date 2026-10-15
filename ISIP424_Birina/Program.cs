@@ -5,14 +5,14 @@ using System.Linq;
 
 namespace Universitet
 {
-    // Тип курса (обязательный или по выбору)
+
     enum TipKursa
     {
         Obyazatelnyy,
-        Elektivnyy
+        Neobyazatelnyy
     }
 
-    // Абстракция: общий класс для всех людей университета
+
     abstract class Chelovek
     {
         private string imya;
@@ -35,8 +35,8 @@ namespace Universitet
             get { return vozrast; }
             set
             {
-                if (value <= 0 || value > 120)
-                    throw new Exception("Возраст должен быть от 1 до 120");
+                if (value <= 0 || value > 60)
+                    throw new Exception("Возраст должен быть от 1 до 60");
                 vozrast = value;
             }
         }
@@ -59,11 +59,11 @@ namespace Universitet
             Kontakt = kontakt;
         }
 
-        // Полиморфизм: у каждого наследника своя реализация
+
         public abstract string PoluchitInfo();
     }
 
-    // Наследование: студент — это человек
+  
     class Student : Chelovek
     {
         public List<Kurs> Kursy { get; set; }
@@ -80,7 +80,7 @@ namespace Universitet
         }
     }
 
-    // Наследование: преподаватель — тоже человек
+
     class Prepodavatel : Chelovek
     {
         public List<Kurs> Kursy { get; set; }
@@ -204,7 +204,6 @@ namespace Universitet
                             PokazatInfoOKurse();
                             break;
                         case 0:
-                            Console.WriteLine("До свидания!");
                             return;
                         default:
                             Console.WriteLine("Нет такого пункта меню.");
@@ -218,7 +217,6 @@ namespace Universitet
             }
         }
 
-        // Безопасный ввод целого числа
         static int ProchitatChislo(string podskazka)
         {
             while (true)
@@ -232,11 +230,10 @@ namespace Universitet
                     return chislo;
                 }
 
-                Console.WriteLine("Ошибка! Нужно ввести целое число.");
+                Console.WriteLine("Нужно ввести целое число");
             }
         }
 
-        // Создание студента
         static Student SozdatStudenta()
         {
             while (true)
@@ -260,7 +257,7 @@ namespace Universitet
             }
         }
 
-        // Создание преподавателя
+
         static Prepodavatel SozdatPrepoda()
         {
             while (true)
@@ -284,7 +281,6 @@ namespace Universitet
             }
         }
 
-        // Создание курса
         static Kurs SozdatKurs()
         {
             while (true)
@@ -295,13 +291,13 @@ namespace Universitet
                     string nazvanie = Console.ReadLine();
 
                     Console.WriteLine("Выберите тип курса:");
-                    Console.WriteLine("0 - Обязательный");
-                    Console.WriteLine("1 - Элективный");
+                    Console.WriteLine("0 Обязательный");
+                    Console.WriteLine("1 Необязательный");
                     int tipChislo = ProchitatChislo("Ваш выбор: ");
 
                     if (tipChislo != 0 && tipChislo != 1)
                     {
-                        Console.WriteLine("Нужно ввести 0 или 1.");
+                        Console.WriteLine("Нужно ввести 0 или 1");
                         continue;
                     }
 
@@ -319,33 +315,33 @@ namespace Universitet
         {
             Student s = SozdatStudenta();
             studenti.Add(s);
-            Console.WriteLine("Студент успешно добавлен.");
+       
         }
 
         static void DobavitPrepodavatelya()
         {
             Prepodavatel p = SozdatPrepoda();
             prepodavateli.Add(p);
-            Console.WriteLine("Преподаватель успешно добавлен.");
+           
         }
 
         static void DobavitKurs()
         {
             Kurs k = SozdatKurs();
             kursy.Add(k);
-            Console.WriteLine("Курс успешно добавлен.");
+            Console.WriteLine("Курс успешно добавлен");
         }
 
         static void NaznachitPrepodaNaKurs()
         {
             if (prepodavateli.Count == 0)
             {
-                Console.WriteLine("В системе нет преподавателей.");
+                Console.WriteLine("В системе нет преподавателей");
                 return;
             }
             if (kursy.Count == 0)
             {
-                Console.WriteLine("В системе нет курсов.");
+                Console.WriteLine("В системе нет курсов");
                 return;
             }
 
@@ -355,7 +351,7 @@ namespace Universitet
 
             if (nomerP < 0 || nomerP >= prepodavateli.Count)
             {
-                Console.WriteLine("Неверный номер преподавателя.");
+                Console.WriteLine("Неверный номер преподавателя");
                 return;
             }
 
@@ -365,7 +361,7 @@ namespace Universitet
 
             if (nomerK < 0 || nomerK >= kursy.Count)
             {
-                Console.WriteLine("Неверный номер курса.");
+                Console.WriteLine("Неверный номер курса");
                 return;
             }
 
@@ -384,19 +380,19 @@ namespace Universitet
                 p.Kursy.Add(k);
             }
 
-            Console.WriteLine($"Преподаватель {p.Imya} назначен на курс '{k.Nazvanie}'.");
+            Console.WriteLine($"Преподаватель {p.Imya} назначен на курс '{k.Nazvanie}'");
         }
 
         static void ZapisatStudentaNaKurs()
         {
             if (studenti.Count == 0)
             {
-                Console.WriteLine("В системе нет студентов.");
+                Console.WriteLine("В системе нет студентов");
                 return;
             }
             if (kursy.Count == 0)
             {
-                Console.WriteLine("В системе нет курсов.");
+                Console.WriteLine("В системе нет курсов");
                 return;
             }
 
@@ -406,7 +402,7 @@ namespace Universitet
 
             if (nomerS < 0 || nomerS >= studenti.Count)
             {
-                Console.WriteLine("Неверный номер студента.");
+                Console.WriteLine("Неверный номер студента");
                 return;
             }
 
@@ -416,7 +412,7 @@ namespace Universitet
 
             if (nomerK < 0 || nomerK >= kursy.Count)
             {
-                Console.WriteLine("Неверный номер курса.");
+                Console.WriteLine("Неверный номер курса");
                 return;
             }
 
@@ -425,21 +421,21 @@ namespace Universitet
 
             if (k.Studenti.Contains(s))
             {
-                Console.WriteLine("Этот студент уже записан на данный курс.");
+                Console.WriteLine("Этот студент уже записан на данный курс");
                 return;
             }
 
             k.Studenti.Add(s);
             s.Kursy.Add(k);
 
-            Console.WriteLine($"Студент {s.Imya} записан на курс '{k.Nazvanie}'.");
+            Console.WriteLine($"Студент {s.Imya} записан на курс '{k.Nazvanie}'");
         }
 
         static void PokazatVsehStudentov()
         {
             if (studenti.Count == 0)
             {
-                Console.WriteLine("  Список студентов пуст.");
+                Console.WriteLine("  Список студентов пуст");
                 return;
             }
 
@@ -453,7 +449,7 @@ namespace Universitet
         {
             if (prepodavateli.Count == 0)
             {
-                Console.WriteLine("  Список преподавателей пуст.");
+                Console.WriteLine("  Список преподавателей пуст");
                 return;
             }
 
@@ -467,7 +463,7 @@ namespace Universitet
         {
             if (kursy.Count == 0)
             {
-                Console.WriteLine("  Список курсов пуст.");
+                Console.WriteLine(" Список курсов пуст");
                 return;
             }
 
@@ -481,7 +477,7 @@ namespace Universitet
         {
             if (studenti.Count == 0)
             {
-                Console.WriteLine("В системе нет студентов.");
+                Console.WriteLine("В системе нет студентов");
                 return;
             }
 
@@ -492,14 +488,14 @@ namespace Universitet
 
             if (s == null)
             {
-                Console.WriteLine("Студент с таким именем не найден.");
+                Console.WriteLine("Студент с таким именем не найден");
                 return;
             }
 
             Console.WriteLine($"Курсы студента {s.Imya}:");
             if (s.Kursy.Count == 0)
             {
-                Console.WriteLine("  Студент пока не записан ни на один курс.");
+                Console.WriteLine("  Студент пока не записан");
                 return;
             }
 
