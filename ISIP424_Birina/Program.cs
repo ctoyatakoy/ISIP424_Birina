@@ -1,17 +1,13 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 
 namespace Universitet
 {
-
     enum TipKursa
     {
         Obyazatelnyy,
-        Neobyazatelnyy
+        Elektivnyy
     }
-
 
     abstract class Chelovek
     {
@@ -24,9 +20,9 @@ namespace Universitet
             get { return imya; }
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
+                if (value == "")
                     throw new Exception("Имя не может быть пустым");
-                imya = value.Trim();
+                imya = value;
             }
         }
 
@@ -35,8 +31,8 @@ namespace Universitet
             get { return vozrast; }
             set
             {
-                if (value <= 0 || value > 60)
-                    throw new Exception("Возраст должен быть от 1 до 60");
+                if (value <= 0 || value > 120)
+                    throw new Exception("Возраст должен быть от 1 до 120");
                 vozrast = value;
             }
         }
@@ -46,9 +42,9 @@ namespace Universitet
             get { return kontakt; }
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
+                if (value == "")
                     throw new Exception("Контакт не может быть пустым");
-                kontakt = value.Trim();
+                kontakt = value;
             }
         }
 
@@ -59,11 +55,9 @@ namespace Universitet
             Kontakt = kontakt;
         }
 
-
         public abstract string PoluchitInfo();
     }
 
-  
     class Student : Chelovek
     {
         public List<Kurs> Kursy { get; set; }
@@ -76,10 +70,9 @@ namespace Universitet
 
         public override string PoluchitInfo()
         {
-            return $"Студент {Imya}, {Vozrast} лет, Контакт: {Kontakt}, курсов: {Kursy.Count}";
+            return "Студент " + Imya + ", " + Vozrast + " лет, Контакт: " + Kontakt + ", курсов: " + Kursy.Count;
         }
     }
-
 
     class Prepodavatel : Chelovek
     {
@@ -93,11 +86,10 @@ namespace Universitet
 
         public override string PoluchitInfo()
         {
-            return $"Преподаватель {Imya}, {Vozrast} лет, Контакт: {Kontakt}, курсов: {Kursy.Count}";
+            return "Преподаватель " + Imya + ", " + Vozrast + " лет, Контакт: " + Kontakt + ", курсов: " + Kursy.Count;
         }
     }
 
-    // Класс курса
     class Kurs
     {
         private string nazvanie;
@@ -107,9 +99,9 @@ namespace Universitet
             get { return nazvanie; }
             set
             {
-                if (string.IsNullOrWhiteSpace(value))
+                if (value == "")
                     throw new Exception("Название курса не может быть пустым");
-                nazvanie = value.Trim();
+                nazvanie = value;
             }
         }
 
@@ -132,7 +124,7 @@ namespace Universitet
                 imyaPrepod = Prepod.Imya;
             }
 
-            return $"Курс '{Nazvanie}' ({Tip}), препод: {imyaPrepod}, студентов: {Studenti.Count}";
+            return "Курс '" + Nazvanie + "' (" + Tip + "), препод: " + imyaPrepod + ", студентов: " + Studenti.Count;
         }
     }
 
@@ -144,12 +136,10 @@ namespace Universitet
 
         static void Main(string[] args)
         {
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
-
             while (true)
             {
                 Console.WriteLine();
-              
+                Console.WriteLine("=== УНИВЕРСИТЕТ ===");
                 Console.WriteLine("1.  Добавить студента");
                 Console.WriteLine("2.  Добавить преподавателя");
                 Console.WriteLine("3.  Добавить курс");
@@ -204,6 +194,7 @@ namespace Universitet
                             PokazatInfoOKurse();
                             break;
                         case 0:
+                            Console.WriteLine("До свидания!");
                             return;
                         default:
                             Console.WriteLine("Нет такого пункта меню.");
@@ -230,7 +221,7 @@ namespace Universitet
                     return chislo;
                 }
 
-                Console.WriteLine("Нужно ввести целое число");
+                Console.WriteLine("Ошибка! Нужно ввести целое число.");
             }
         }
 
@@ -256,7 +247,6 @@ namespace Universitet
                 }
             }
         }
-
 
         static Prepodavatel SozdatPrepoda()
         {
@@ -291,13 +281,13 @@ namespace Universitet
                     string nazvanie = Console.ReadLine();
 
                     Console.WriteLine("Выберите тип курса:");
-                    Console.WriteLine("0 Обязательный");
-                    Console.WriteLine("1 Необязательный");
+                    Console.WriteLine("0 - Обязательный");
+                    Console.WriteLine("1 - Элективный");
                     int tipChislo = ProchitatChislo("Ваш выбор: ");
 
                     if (tipChislo != 0 && tipChislo != 1)
                     {
-                        Console.WriteLine("Нужно ввести 0 или 1");
+                        Console.WriteLine("Нужно ввести 0 или 1.");
                         continue;
                     }
 
@@ -315,33 +305,33 @@ namespace Universitet
         {
             Student s = SozdatStudenta();
             studenti.Add(s);
-       
+            Console.WriteLine("Студент успешно добавлен.");
         }
 
         static void DobavitPrepodavatelya()
         {
             Prepodavatel p = SozdatPrepoda();
             prepodavateli.Add(p);
-           
+            Console.WriteLine("Преподаватель успешно добавлен.");
         }
 
         static void DobavitKurs()
         {
             Kurs k = SozdatKurs();
             kursy.Add(k);
-            Console.WriteLine("Курс успешно добавлен");
+            Console.WriteLine("Курс успешно добавлен.");
         }
 
         static void NaznachitPrepodaNaKurs()
         {
             if (prepodavateli.Count == 0)
             {
-                Console.WriteLine("В системе нет преподавателей");
+                Console.WriteLine("В системе нет преподавателей.");
                 return;
             }
             if (kursy.Count == 0)
             {
-                Console.WriteLine("В системе нет курсов");
+                Console.WriteLine("В системе нет курсов.");
                 return;
             }
 
@@ -351,7 +341,7 @@ namespace Universitet
 
             if (nomerP < 0 || nomerP >= prepodavateli.Count)
             {
-                Console.WriteLine("Неверный номер преподавателя");
+                Console.WriteLine("Неверный номер преподавателя.");
                 return;
             }
 
@@ -361,7 +351,7 @@ namespace Universitet
 
             if (nomerK < 0 || nomerK >= kursy.Count)
             {
-                Console.WriteLine("Неверный номер курса");
+                Console.WriteLine("Неверный номер курса.");
                 return;
             }
 
@@ -370,7 +360,7 @@ namespace Universitet
 
             if (k.Prepod != null && k.Prepod != p)
             {
-                k.Prepod.Kursy.Remove(k);
+                k.Prepod.Kursy.Remove(k); // Обычное удаление из списка без LINQ
             }
 
             k.Prepod = p;
@@ -380,19 +370,19 @@ namespace Universitet
                 p.Kursy.Add(k);
             }
 
-            Console.WriteLine($"Преподаватель {p.Imya} назначен на курс '{k.Nazvanie}'");
+            Console.WriteLine("Преподаватель " + p.Imya + " назначен на курс '" + k.Nazvanie + "'.");
         }
 
         static void ZapisatStudentaNaKurs()
         {
             if (studenti.Count == 0)
             {
-                Console.WriteLine("В системе нет студентов");
+                Console.WriteLine("В системе нет студентов.");
                 return;
             }
             if (kursy.Count == 0)
             {
-                Console.WriteLine("В системе нет курсов");
+                Console.WriteLine("В системе нет курсов.");
                 return;
             }
 
@@ -402,7 +392,7 @@ namespace Universitet
 
             if (nomerS < 0 || nomerS >= studenti.Count)
             {
-                Console.WriteLine("Неверный номер студента");
+                Console.WriteLine("Неверный номер студента.");
                 return;
             }
 
@@ -412,7 +402,7 @@ namespace Universitet
 
             if (nomerK < 0 || nomerK >= kursy.Count)
             {
-                Console.WriteLine("Неверный номер курса");
+                Console.WriteLine("Неверный номер курса.");
                 return;
             }
 
@@ -421,27 +411,27 @@ namespace Universitet
 
             if (k.Studenti.Contains(s))
             {
-                Console.WriteLine("Этот студент уже записан на данный курс");
+                Console.WriteLine("Этот студент уже записан на данный курс.");
                 return;
             }
 
             k.Studenti.Add(s);
             s.Kursy.Add(k);
 
-            Console.WriteLine($"Студент {s.Imya} записан на курс '{k.Nazvanie}'");
+            Console.WriteLine("Студент " + s.Imya + " записан на курс '" + k.Nazvanie + "'.");
         }
 
         static void PokazatVsehStudentov()
         {
             if (studenti.Count == 0)
             {
-                Console.WriteLine("  Список студентов пуст");
+                Console.WriteLine("  Список студентов пуст.");
                 return;
             }
 
             for (int i = 0; i < studenti.Count; i++)
             {
-                Console.WriteLine($"  {i + 1}. {studenti[i].PoluchitInfo()}");
+                Console.WriteLine("  " + (i + 1) + ". " + studenti[i].PoluchitInfo());
             }
         }
 
@@ -449,13 +439,13 @@ namespace Universitet
         {
             if (prepodavateli.Count == 0)
             {
-                Console.WriteLine("  Список преподавателей пуст");
+                Console.WriteLine("  Список преподавателей пуст.");
                 return;
             }
 
             for (int i = 0; i < prepodavateli.Count; i++)
             {
-                Console.WriteLine($"  {i + 1}. {prepodavateli[i].PoluchitInfo()}");
+                Console.WriteLine("  " + (i + 1) + ". " + prepodavateli[i].PoluchitInfo());
             }
         }
 
@@ -463,13 +453,13 @@ namespace Universitet
         {
             if (kursy.Count == 0)
             {
-                Console.WriteLine(" Список курсов пуст");
+                Console.WriteLine("  Список курсов пуст.");
                 return;
             }
 
             for (int i = 0; i < kursy.Count; i++)
             {
-                Console.WriteLine($"  {i + 1}. {kursy[i].PoluchitInfo()}");
+                Console.WriteLine("  " + (i + 1) + ". " + kursy[i].PoluchitInfo());
             }
         }
 
@@ -477,31 +467,39 @@ namespace Universitet
         {
             if (studenti.Count == 0)
             {
-                Console.WriteLine("В системе нет студентов");
+                Console.WriteLine("В системе нет студентов.");
                 return;
             }
 
             Console.Write("Введите имя студента: ");
             string imya = Console.ReadLine();
 
-            Student s = studenti.FirstOrDefault(x => x.Imya.Equals(imya, StringComparison.OrdinalIgnoreCase));
+            Student s = null;
+            for (int i = 0; i < studenti.Count; i++)
+            {
+                if (studenti[i].Imya == imya)
+                {
+                    s = studenti[i];
+                    break;
+                }
+            }
 
             if (s == null)
             {
-                Console.WriteLine("Студент с таким именем не найден");
+                Console.WriteLine("Студент с таким именем не найден.");
                 return;
             }
 
-            Console.WriteLine($"Курсы студента {s.Imya}:");
+            Console.WriteLine("Курсы студента " + s.Imya + ":");
             if (s.Kursy.Count == 0)
             {
-                Console.WriteLine("  Студент пока не записан");
+                Console.WriteLine("  Студент пока не записан ни на один курс.");
                 return;
             }
 
-            foreach (Kurs k in s.Kursy)
+            for (int i = 0; i < s.Kursy.Count; i++)
             {
-                Console.WriteLine($"  - {k.Nazvanie}");
+                Console.WriteLine("  - " + s.Kursy[i].Nazvanie);
             }
         }
 
@@ -524,7 +522,7 @@ namespace Universitet
             }
 
             Kurs k = kursy[nomerK];
-            Console.WriteLine($"Студенты курса '{k.Nazvanie}':");
+            Console.WriteLine("Студенты курса '" + k.Nazvanie + "':");
 
             if (k.Studenti.Count == 0)
             {
@@ -532,9 +530,9 @@ namespace Universitet
                 return;
             }
 
-            foreach (Student s in k.Studenti)
+            for (int i = 0; i < k.Studenti.Count; i++)
             {
-                Console.WriteLine($"  - {s.Imya}");
+                Console.WriteLine("  - " + k.Studenti[i].Imya);
             }
         }
 
@@ -564,16 +562,25 @@ namespace Universitet
             }
 
             Console.WriteLine();
-            Console.WriteLine($"Название курса: {k.Nazvanie}");
-            Console.WriteLine($"Тип курса: {k.Tip}");
-            Console.WriteLine($"Преподаватель: {imyaPrepod}");
-            Console.WriteLine($"Количество студентов: {k.Studenti.Count}");
+            Console.WriteLine("Название курса: " + k.Nazvanie);
+            Console.WriteLine("Тип курса: " + k.Tip);
+            Console.WriteLine("Преподаватель: " + imyaPrepod);
+            Console.WriteLine("Количество студентов: " + k.Studenti.Count);
 
-            List<string> imena = k.Studenti.Select(s => s.Imya).ToList();
-            if (imena.Count > 0)
+            if (k.Studenti.Count > 0)
             {
-                Console.WriteLine("Список студентов: " + string.Join(", ", imena));
+                Console.Write("Список студентов: ");
+                for (int i = 0; i < k.Studenti.Count; i++)
+                {
+                    Console.Write(k.Studenti[i].Imya);
+                    if (i < k.Studenti.Count - 1)
+                    {
+                        Console.Write(", ");
+                    }
+                }
+                Console.WriteLine();
             }
         }
     }
 }
+
