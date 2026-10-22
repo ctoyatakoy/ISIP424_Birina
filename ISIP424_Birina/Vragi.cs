@@ -1,11 +1,10 @@
 using System;
 
-// метка для боссов
 interface IBoss
 {
 }
 
-// базовый враг
+
 abstract class Vrag
 {
     public string Imya { get; protected set; }
@@ -27,25 +26,25 @@ abstract class Vrag
         }
     }
 
-    // урон до учёта блока
+  
     public virtual int RasschitatUron()
     {
         return Ataka;
     }
 
-    // какая защита игрока учитывается
+   
     public virtual int ZashchitaIgroka(Igrok igrok)
     {
         return igrok.TekushceiDospekh.Zashchita;
     }
 
-    // особый эффект после попадания
+  
     public virtual void Osobennost(Igrok igrok)
     {
     }
 }
 
-// гоблин: крит
+//гоблин крит
 class Goblin : Vrag
 {
     public const int BazZdorovie = 30;
@@ -75,7 +74,7 @@ class Goblin : Vrag
     }
 }
 
-// скелет: игнор защиты
+//скелет игнор защиты
 class Skelet : Vrag
 {
     public const int BazZdorovie = 25;
@@ -96,7 +95,7 @@ class Skelet : Vrag
     }
 }
 
-// маг: заморозка
+//маг заморозка
 class Mag : Vrag
 {
     public const int BazZdorovie = 20;
@@ -125,7 +124,7 @@ class Mag : Vrag
     }
 }
 
-// боссы: сначала срабатывает конструктор расы, потом меняем значения
+//боссы
 
 class VVG : Goblin, IBoss
 {

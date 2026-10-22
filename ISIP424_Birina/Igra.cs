@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-// ход игры
+
 class Igra
 {
     Igrok igrok = new Igrok();

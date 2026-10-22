@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 
-// создаёт случайных врагов и предметы
 static class Generator
 {
     static string[] nazvaniyaOruzhiya = { "кинжал", "топор", "копьё", "булава", "меч" };

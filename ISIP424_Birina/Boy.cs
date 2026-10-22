@@ -1,6 +1,6 @@
 using System;
 
-// бой игрока с врагом
+
 class Boy
 {
     Igrok igrok;
@@ -12,7 +12,7 @@ class Boy
         vrag = vragParam;
     }
 
-    // true, если игрок победил
+ 
     public bool Nachat()
     {
         igrok.Zamorozhen = false;
@@ -32,7 +32,7 @@ class Boy
         return igrok.Zhiv;
     }
 
-    // возвращает true, если игрок выбрал защиту
+
     bool HodIgroka()
     {
         if (igrok.Zamorozhen)
@@ -63,7 +63,7 @@ class Boy
     {
         Console.WriteLine(vrag.Imya + " атакует");
 
-        // уклонение
+        //уклонение
         if (zashchishaetsya && Sluchai.Ekzemplyar.Shans(40))
         {
             Console.WriteLine("ты уклонился");
@@ -72,7 +72,7 @@ class Boy
 
         int uron = vrag.RasschitatUron();
 
-        // блок
+        //блок
         if (zashchishaetsya)
         {
             int zashchita = vrag.ZashchitaIgroka(igrok);
