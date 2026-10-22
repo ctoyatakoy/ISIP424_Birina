@@ -47,6 +47,7 @@
     <Compile Include="Generator.cs" />
     <Compile Include="Igra.cs" />
     <Compile Include="Igrok.cs" />
+    <Compile Include="Predmety.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
