@@ -1,17 +1,17 @@
+using System;
 using System.Security.Cryptography;
 
-//генератор случайных чисел
+
 class Sluchai
 {
-
     private static Sluchai ekzemplyar;
 
+    private RandomNumberGenerator generator = RandomNumberGenerator.Create();
 
     private Sluchai()
     {
     }
 
-  
     public static Sluchai Ekzemplyar
     {
         get
@@ -24,10 +24,14 @@ class Sluchai
         }
     }
 
-   
+
     public int Chislo(int min, int max)
     {
-        return RandomNumberGenerator.GetInt32(min, max + 1);
+        byte[] bayty = new byte[4];
+        generator.GetBytes(bayty);
+        uint sluchainoe = BitConverter.ToUInt32(bayty, 0);
+        uint diapazon = (uint)(max - min + 1);
+        return min + (int)(sluchainoe % diapazon);
     }
 
     public bool Shans(int procent)
@@ -35,3 +39,4 @@ class Sluchai
         return Chislo(1, 100) <= procent;
     }
 }
+

@@ -17,7 +17,7 @@ class Igra
         {
             hod++;
             Console.WriteLine();
-            Console.WriteLine("--- ход " + hod + " ---");
+            Console.WriteLine("ход " + hod);
             Console.WriteLine("здоровье: " + igrok.Zdorovie + "/" + igrok.MaxZdorovie);
             Console.WriteLine("оружие: " + igrok.TekushceeOruzhie);
             Console.WriteLine("доспехи: " + igrok.TekushceiDospekh);
