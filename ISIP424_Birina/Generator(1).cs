@@ -8,7 +8,7 @@ static class Generator
 
     public static Vrag SluchainyiVrag()
     {
-        int n = Sluchai.Chislo(1, 3);
+        int n = Sluchai.Ekzemplyar.Chislo(1, 3);
         if (n == 1)
         {
             return new Goblin();
@@ -27,22 +27,22 @@ static class Generator
         bossy.Add(new Kovalsky());
         bossy.Add(new ArhimagCpp());
         bossy.Add(new PestovSMinus());
-        return bossy[Sluchai.Chislo(0, bossy.Count - 1)];
+        return bossy[Sluchai.Ekzemplyar.Chislo(0, bossy.Count - 1)];
     }
 
     public static Predmet SluchainyiPredmet()
     {
-        int n = Sluchai.Chislo(1, 3);
+        int n = Sluchai.Ekzemplyar.Chislo(1, 3);
         if (n == 1)
         {
             return new Zelie();
         }
         if (n == 2)
         {
-            string imya = nazvaniyaOruzhiya[Sluchai.Chislo(0, nazvaniyaOruzhiya.Length - 1)];
-            return new Oruzhie(imya, Sluchai.Chislo(8, 20));
+            string imya = nazvaniyaOruzhiya[Sluchai.Ekzemplyar.Chislo(0, nazvaniyaOruzhiya.Length - 1)];
+            return new Oruzhie(imya, Sluchai.Ekzemplyar.Chislo(8, 20));
         }
-        string imyaDospeha = nazvaniyaDospehov[Sluchai.Chislo(0, nazvaniyaDospehov.Length - 1)];
-        return new Dospekh(imyaDospeha, Sluchai.Chislo(2, 8));
+        string imyaDospeha = nazvaniyaDospehov[Sluchai.Ekzemplyar.Chislo(0, nazvaniyaDospehov.Length - 1)];
+        return new Dospekh(imyaDospeha, Sluchai.Ekzemplyar.Chislo(2, 8));
     }
 }

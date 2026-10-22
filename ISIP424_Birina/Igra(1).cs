@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
+// ход игры
 class Igra
 {
     Igrok igrok = new Igrok();
@@ -16,7 +17,7 @@ class Igra
         {
             hod++;
             Console.WriteLine();
-            Console.WriteLine("ход " + hod);
+            Console.WriteLine("--- ход " + hod + " ---");
             Console.WriteLine("здоровье: " + igrok.Zdorovie + "/" + igrok.MaxZdorovie);
             Console.WriteLine("оружие: " + igrok.TekushceeOruzhie);
             Console.WriteLine("доспехи: " + igrok.TekushceiDospekh);
@@ -26,7 +27,7 @@ class Igra
                 Console.WriteLine("появился босс!");
                 Srazhenie(Generator.SluchainyiBoss());
             }
-            else if (Sluchai.Shans(50))
+            else if (Sluchai.Ekzemplyar.Shans(50))
             {
                 Console.WriteLine("ты нашёл сундук");
                 Generator.SluchainyiPredmet().Poluchit(igrok);
@@ -56,6 +57,7 @@ class Igra
         }
     }
 
+    // итоги
     void Itogi()
     {
         Console.WriteLine();
@@ -64,10 +66,13 @@ class Igra
         Console.WriteLine("побеждено врагов: " + pobezhdennye.Count());
         Console.WriteLine("из них боссов: " + pobezhdennye.Count(v => v is IBoss));
 
-        var tipy = pobezhdennye.Select(v => v.Imya).Distinct();
-        if (tipy.Any())
+        if (pobezhdennye.Count > 0)
         {
-            Console.WriteLine("типы: " + string.Join(", ", tipy));
+            Console.WriteLine("побеждены:");
+            foreach (Vrag vrag in pobezhdennye)
+            {
+                Console.WriteLine("- " + vrag.Imya);
+            }
         }
     }
 }
