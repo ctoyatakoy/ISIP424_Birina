@@ -47,10 +47,10 @@ abstract class Vrag
 //гоблин крит
 class Goblin : Vrag
 {
-    public const int BazZdorovie = 30;
-    public const int BazAtaka = 8;
-    public const int BazZashchita = 2;
-    public const int BazShansKrita = 20;
+    public const int BazZdorovie = 24;
+    public const int BazAtaka = 6;
+    public const int BazZashchita = 0;
+    public const int BazShansKrita = 15;
 
     protected int shansKrita;
 

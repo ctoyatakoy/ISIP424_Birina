@@ -39,7 +39,7 @@ static class Generator
         if (n == 2)
         {
             string imya = nazvaniyaOruzhiya[Sluchai.Ekzemplyar.Chislo(0, nazvaniyaOruzhiya.Length - 1)];
-            return new Oruzhie(imya, Sluchai.Ekzemplyar.Chislo(8, 20));
+            return new Oruzhie(imya, Sluchai.Ekzemplyar.Chislo(12, 25));
         }
         string imyaDospeha = nazvaniyaDospehov[Sluchai.Ekzemplyar.Chislo(0, nazvaniyaDospehov.Length - 1)];
         return new Dospekh(imyaDospeha, Sluchai.Ekzemplyar.Chislo(2, 8));

@@ -14,9 +14,9 @@ class Igrok
 
     public Igrok()
     {
-        MaxZdorovie = 100;
+        MaxZdorovie = 150;
         Zdorovie = MaxZdorovie;
-        TekushceeOruzhie = new Oruzhie("меч", 10);
+        TekushceeOruzhie = new Oruzhie("меч", 14);
         TekushceiDospekh = new Dospekh("кожанка", 3);
     }
 
